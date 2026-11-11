@@ -1,0 +1,102 @@
+{
+  "app_id": "podfetchdocker",
+  "title": "Podfetch",
+  "image": "samuel19982/podfetch:v5.2.3",
+  "repo_name": "podfetch",
+  "mode": "plain",
+  "container_port": 8000,
+  "category": [
+    "Audio_Video_Entertainment"
+  ],
+  "volumes": [
+    {
+      "host": "/Volume1/DockerAppData/podfetchdocker/db",
+      "container": "/app/db"
+    },
+    {
+      "host": "/Volume1/DockerAppData/podfetchdocker/podcasts",
+      "container": "/app/podcasts"
+    }
+  ],
+  "env": {
+    "TZ": "Asia/Shanghai",
+    "DATABASE_URL": "sqlite:///app/db/podcast.db",
+    "POLLING_INTERVAL": "300",
+    "BASIC_AUTH": "false",
+    "GPODDER_INTEGRATION_ENABLED": "false"
+  },
+  "auth": "SamTV12345",
+  "upstream_url": "https://github.com/SamTV12345/PodFetch",
+  "upstream_license": "Apache-2.0",
+  "descript": "A sleek and efficient podcast downloader. Packaged for TerraMaster TOS 7: the official Docker Hub image runs as a container on your NAS, keeps its data in the application data folder (so it survives restarts and updates), and is opened from its desktop icon.",
+  "release_note": "1. First release.",
+  "important": "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/podfetchdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN.",
+  "probe": {
+    "user_in_image": "(root)",
+    "entrypoint": null,
+    "cmd": [
+      "./podfetch"
+    ],
+    "exposed_ports": [
+      8000
+    ],
+    "declared_volumes": [],
+    "image_healthcheck": [],
+    "digest": "samuel19982/podfetch@sha256:ba504bbb41a5187225a4b826749c3f298d6be8c236f55543eb5356ccae01a78e",
+    "architecture": "x86_64",
+    "platforms": [],
+    "http_client_in_image": "",
+    "trial_run": {
+      "ok": false,
+      "http_code": "",
+      "state": "exited",
+      "paths": [],
+      "host_port": 18000,
+      "log_tail": "Debug file located at location /home/rust/src/target/x86_64-unknown-linux-musl/release/build/podfetch-9a82b5543ec4c1d6/out/built.rs\n\n  ____           _ _____    _       _\n |  _ \\ ___   __| |  ___|__| |_ ___| |__\n | |_) / _ \\ / _` | |_ / _ \\ __/ __| '_ \\\n |  __/ (_) | (_| |  _|  __/ || (__| | | |\n |_|   \\___/ \\__,_|_|  \\___|\\__\\___|_| |_|\n\n        \n\n\n2026-11-10T16:30:59 ℹ️ - Starting with the following environment variables:\n2026-11-10T16:30:59 ℹ️ - Listening on port: 8000\n2026-11-10T16:30:59 ℹ️ - Polling interval for new episodes: 300 minutes\n2026-11-10T16:30:59 ℹ️ - Developer specifications available at http://localhost:8000/swagger-ui/index.html#/\n2026-11-10T16:30:59 ℹ️ - GPodder integration enabled: false\n2026-11-10T16:30:59 ℹ️ - Audiobookshelf integration enabled: false\n2026-11-10T16:30:59 ℹ️ - Mopidy integration enabled: false\n2026-11-10T16:30:59 ℹ️ - Podindex API key&secret configured: false\n\n\n\nthread 'main' (1) panicked at crates/podfetch-persistence/src/db.rs:14:10:\nFailed to connect to database: Connection(BadConnection(\"Invalid connection url for multiconnection\"))\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace",
+      "files_in_mounts": ""
+    },
+    "docker_hub": {},
+    "github": {
+      "owner": "SamTV12345",
+      "repo": "PodFetch",
+      "description": " A sleek and efficient podcast downloader.",
+      "license": "Apache-2.0",
+      "homepage": "https://podfetch-docs.samtv.fyi/"
+    }
+  },
+  "entrypoint_file": "src/entrypoint.sh",
+  "platform": "x86_64",
+  "user": "1000:1000",
+  "publisher": "Moechz",
+  "compose_project": "podfetchdocker",
+  "github_repo": "podfetch",
+  "upstream_version": "5.2.3",
+  "release_tag_prefix": "v",
+  "version": "5.2.3-1",
+  "help": "https://github.com/Moechz/podfetch/issues",
+  "official": "https://github.com/SamTV12345/PodFetch",
+  "license": "Apache-2.0",
+  "docker_socket": false,
+  "group_add": [],
+  "healthcheck": [
+    "CMD",
+    "/app/podfetch",
+    "users",
+    "list"
+  ],
+  "platforms": [
+    "x86_64",
+    "aarch64"
+  ],
+  "translations": {
+    "zh-cn": {
+      "descript": "播客订阅、下载与播放服务。",
+      "important": "首次使用请打开网页完成初始化。数据保存在 DockerAppData/podfetchdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+    },
+    "zh-hk": {
+      "descript": "播客订阅、下载与播放服务。",
+      "important": "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/podfetchdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+    }
+  },
+  "host_port": 8061
+}
